@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to ทิ้ง</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #e9f5f4;
+            padding: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .grid .card img {
+            width: 300px;
+            height: 300px;
+            display: block;
+            margin: 0 auto 10px;
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            text-align: center;
+            max-width: 450px;
+            max-height: 600px;
+            font-size: 20px;
+        }
+
+        .popup img {
+            width: 300px;
+            height: 300px;
+            margin-bottom: 10px;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        h1{
+            font-size: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="header">nickname</div> -->
+    <div class="container">
+        <h1>How to ทิ้ง</h1>
+        <h3>เป็นแนวคิดที่ช่วยให้เราทิ้งขยะอย่างถูกต้องและเป็นมิตรต่อสิ่งแวดล้อม โดยเฉพาะขยะอิเล็กทรอนิกส์ (E-Waste)
+            ซึ่งมีสารอันตรายและสามารถนำไปรีไซเคิลได้</h3>
+        <div class="grid">
+            <div class="card"
+                onclick="openPopup('img/battery.jpg', 'วิธีการทิ้ง', 'เก็บรวบรวมถ่านไฟฉายใช้แล้วไว้ในถุงพลาสติก หรือถุงดำและนำไปที่จุดรับทิ้งแบตเตอรี่หรือถังขยะสีแดง')">
+                <img src="img/battery.jpg" alt="ถ่าน">
+                <p>ถ่าน</p>
+            </div>
+            <div class="card"
+                onclick="openPopup('img/lamp.jpg', 'หลอดไฟ', 'นำหลอดไฟที่จะทิ้งแล้วใส่ปลอกกระดาษที่เคยใส่มาตอนซื้อ หรือห่อด้วยกระดาษหนังสือพิมพ์หลายๆ ชั้น เพื่อป้องกันหลอดแตกหักเสียหายและนำไปที่จุดรับทิ้งแบตเตอรี่หรือถังขยะสีแดง')">
+                <img src="img/lamp.jpg" alt="หลอดไฟ">
+                <p>หลอดไฟ</p>
+            </div>
+            <div class="card"
+                onclick="openPopup('img/headphone.jpg', 'เมาส์', 'ใช้เทปพันปลายสาย หรือห่อด้วยกระดาษ/ถุงพลาสติกเพื่อลดความเสี่ยงจากโลหะที่อาจสัมผัสกันไม่ควรทิ้งถังขยะสีแดงหากจำเป็นต้องทิ้งจริง ๆ ควรห่อแยกและติดป้ายว่าเป็นขยะอิเล็กทรอนิกส์เพื่อให้เจ้าหน้าที่กำจัดขยะรู้ว่าควรนำไปคัดแยกต่อ')">
+                <img src="img/headphone.jpg" alt="หูฟัง">
+                <p>หูฟัง</p>
+            </div>
+            <div class="card"
+                onclick="openPopup('img/mouse.jpg', 'หูฟัง', 'หากเป็นเมาส์ไร้สาย ควรถอดแบตเตอรี่ออกก่อน ใช้ถุงพลาสติกหรือกระดาษห่อเมาส์ก่อนทิ้ง เพื่อลดความเสียหายหรืออันตรายจากเศษอิเล็กทรอนิกส์ไม่ควรทิ้งถังขยะสีแดงหากจำเป็นต้องทิ้งควรห่อแยกและติดป้ายว่าเป็นขยะอิเล็กทรอนิกส์เพื่อให้เจ้าหน้าที่คัดแยกได้ง่ายขึ้น')">
+                <img src="img/mouse.jpg" alt="เมาส์">
+                <p>เมาส์</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <img id="popupImage" src="" alt="">
+        <h2 id="popupTitle"></h2>
+        <p id="popupText"></p>
+        <button class="close-btn" onclick="closePopup()">ปิด</button>
+    </div>
+
+    <script>
+        function openPopup(imageSrc, title, text) {
+            document.getElementById('popupImage').src = imageSrc;
+            document.getElementById('popupTitle').innerText = title;
+            document.getElementById('popupText').innerText = text;
+            document.getElementById('popupOverlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
