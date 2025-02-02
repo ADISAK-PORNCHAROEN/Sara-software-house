@@ -29,18 +29,18 @@
 
         .card {
             background: #ffffff;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
             cursor: pointer;
-            transition: transform 0.3s ease, filter 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-align: center;
         }
 
         .card:hover {
-            transform: scale(1.1);
-            filter: brightness(1.2);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         .grid {
@@ -51,34 +51,75 @@
         }
 
         .grid .card img {
-            width: 300px;
-            height: 300px;
+            width: 100%;
+            max-width: 250px;
+            height: auto;
             display: block;
             margin: 0 auto 10px;
+            border-radius: 8px;
         }
 
-        /* Popup styles */
+        .home-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #4CAF50;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background-color: #45a049;
+        }
+
+        .home-button svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
         .popup {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(0.8);
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            text-align: center;
-            max-width: 450px;
-            max-height: 600px;
-            font-size: 20px;
+            text-align: left;
+            max-width: 500px;
+            width: 90%;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .popup.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
         }
 
         .popup img {
-            width: 300px;
-            height: 300px;
-            margin-bottom: 10px;
+            width: auto;
+            max-width: 100%;
+            max-height: 250px;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 12px;
+            object-fit: contain;
         }
 
         .popup-overlay {
@@ -88,60 +129,142 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .close-btn {
-            background: red;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
+        .popup-overlay.active {
+            opacity: 1;
         }
-        h1{
-            font-size: 40px;
+
+        .close-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-icon:hover {
+            background: #e0e0e0;
+            transform: rotate(90deg);
+        }
+
+        .close-icon::before,
+        .close-icon::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 2px;
+            background: #333;
+        }
+
+        .close-icon::before {
+            transform: rotate(45deg);
+        }
+
+        .close-icon::after {
+            transform: rotate(-45deg);
+        }
+
+        .popup h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .popup p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .container {
+                padding: 10px;
+            }
+            .popup {
+                padding: 20px;
+            }
+            .home-button {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            .home-button svg {
+                width: 25px;
+                height: 25px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- <div class="header">nickname</div> -->
     <div class="container">
         <h1>How to ทิ้ง</h1>
         <h3>เป็นแนวคิดที่ช่วยให้เราทิ้งขยะอย่างถูกต้องและเป็นมิตรต่อสิ่งแวดล้อม โดยเฉพาะขยะอิเล็กทรอนิกส์ (E-Waste)
             ซึ่งมีสารอันตรายและสามารถนำไปรีไซเคิลได้</h3>
         <div class="grid">
-            <div class="card"
-                onclick="openPopup('img/battery.jpg', 'วิธีการทิ้ง', 'เก็บรวบรวมถ่านไฟฉายใช้แล้วไว้ในถุงพลาสติก หรือถุงดำและนำไปที่จุดรับทิ้งแบตเตอรี่หรือถังขยะสีแดง')">
+            <div class="card" onclick="openPopup('img/battery.jpg', 'วิธีการทิ้ง', 'เก็บรวบรวมถ่านไฟฉายใช้แล้วไว้ในถุงพลาสติก หรือถุงดำและนำไปที่จุดรับทิ้งแบตเตอรี่หรือถังขยะสีแดง')">
                 <img src="img/battery.jpg" alt="ถ่าน">
                 <p>ถ่าน</p>
             </div>
-            <div class="card"
-                onclick="openPopup('img/lamp.jpg', 'หลอดไฟ', 'นำหลอดไฟที่จะทิ้งแล้วใส่ปลอกกระดาษที่เคยใส่มาตอนซื้อ หรือห่อด้วยกระดาษหนังสือพิมพ์หลายๆ ชั้น เพื่อป้องกันหลอดแตกหักเสียหายและนำไปที่จุดรับทิ้งแบตเตอรี่หรือถังขยะสีแดง')">
+            <div class="card" onclick="openPopup('img/lamp.jpg', 'หลอดไฟ', 'นำหลอดไฟที่จะทิ้งแล้วใส่ปลอกกระดาษที่เคยใส่มาตอนซื้อ หรือห่อด้วยกระดาษหนังสือพิมพ์หลายๆ ชั้น เพื่อป้องกันหลอดแตกหักเสียหายและนำไปที่จุดรับทิ้งแบตเตอรี่หรือถังขยะสีแดง')">
                 <img src="img/lamp.jpg" alt="หลอดไฟ">
                 <p>หลอดไฟ</p>
             </div>
-            <div class="card"
-                onclick="openPopup('img/headphone.jpg', 'เมาส์', 'ใช้เทปพันปลายสาย หรือห่อด้วยกระดาษ/ถุงพลาสติกเพื่อลดความเสี่ยงจากโลหะที่อาจสัมผัสกันไม่ควรทิ้งถังขยะสีแดงหากจำเป็นต้องทิ้งจริง ๆ ควรห่อแยกและติดป้ายว่าเป็นขยะอิเล็กทรอนิกส์เพื่อให้เจ้าหน้าที่กำจัดขยะรู้ว่าควรนำไปคัดแยกต่อ')">
+            <div class="card" onclick="openPopup('img/headphone.jpg', 'หูฟัง', 'ใช้เทปพันปลายสาย หรือห่อด้วยกระดาษ/ถุงพลาสติกเพื่อลดความเสี่ยงจากโลหะที่อาจสัมผัสกันไม่ควรทิ้งถังขยะสีแดงหากจำเป็นต้องทิ้งจริง ๆ ควรห่อแยกและติดป้ายว่าเป็นขยะอิเล็กทรอนิกส์เพื่อให้เจ้าหน้าที่กำจัดขยะรู้ว่าควรนำไปคัดแยกต่อ')">
                 <img src="img/headphone.jpg" alt="หูฟัง">
                 <p>หูฟัง</p>
             </div>
-            <div class="card"
-                onclick="openPopup('img/mouse.jpg', 'หูฟัง', 'หากเป็นเมาส์ไร้สาย ควรถอดแบตเตอรี่ออกก่อน ใช้ถุงพลาสติกหรือกระดาษห่อเมาส์ก่อนทิ้ง เพื่อลดความเสียหายหรืออันตรายจากเศษอิเล็กทรอนิกส์ไม่ควรทิ้งถังขยะสีแดงหากจำเป็นต้องทิ้งควรห่อแยกและติดป้ายว่าเป็นขยะอิเล็กทรอนิกส์เพื่อให้เจ้าหน้าที่คัดแยกได้ง่ายขึ้น')">
+            <div class="card" onclick="openPopup('img/mouse.jpg', 'เมาส์', 'หากเป็นเมาส์ไร้สาย ควรถอดแบตเตอรี่ออกก่อน ใช้ถุงพลาสติกหรือกระดาษห่อเมาส์ก่อนทิ้ง เพื่อลดความเสียหายหรืออันตรายจากเศษอิเล็กทรอนิกส์ไม่ควรทิ้งถังขยะสีแดงหากจำเป็นต้องทิ้งควรห่อแยกและติดป้ายว่าเป็นขยะอิเล็กทรอนิกส์เพื่อให้เจ้าหน้าที่คัดแยกได้ง่ายขึ้น')">
                 <img src="img/mouse.jpg" alt="เมาส์">
                 <p>เมาส์</p>
             </div>
         </div>
     </div>
 
-    <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+    <a href="#" class="home-button" onclick="homePage(); return false;">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+    </a>
+
+    <div class="popup-overlay" id="popupOverlay"></div>
     <div class="popup" id="popup">
+        <div class="close-icon" onclick="closePopup()"></div>
         <img id="popupImage" src="" alt="">
         <h2 id="popupTitle"></h2>
         <p id="popupText"></p>
-        <button class="close-btn" onclick="closePopup()">ปิด</button>
     </div>
 
     <script>
@@ -151,12 +274,26 @@
             document.getElementById('popupText').innerText = text;
             document.getElementById('popupOverlay').style.display = 'block';
             document.getElementById('popup').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('popupOverlay').classList.add('active');
+                document.getElementById('popup').classList.add('active');
+            }, 10);
         }
 
         function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
-            document.getElementById('popup').style.display = 'none';
+            document.getElementById('popupOverlay').classList.remove('active');
+            document.getElementById('popup').classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('popupOverlay').style.display = 'none';
+                document.getElementById('popup').style.display = 'none';
+            }, 300);
         }
+
+        function homePage() {
+            document.location.href = './index.html';
+        }
+
+        document.getElementById('popupOverlay').addEventListener('click', closePopup);
     </script>
 </body>
 

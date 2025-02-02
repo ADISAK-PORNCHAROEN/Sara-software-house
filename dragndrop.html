@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -276,6 +277,36 @@
             transform: translateY(0);
         }
 
+        .home-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #4CAF50;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 998;
+        }
+
+        .home-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background-color: #45a049;
+        }
+
+        .home-button svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 10px 5px;
@@ -310,6 +341,18 @@
             .waste-item img {
                 width: 50px;
                 height: 50px;
+            }
+
+            .home-button {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .home-button svg {
+                width: 25px;
+                height: 25px;
             }
         }
 
@@ -390,10 +433,10 @@
             <div class="waste-item disabled" data-type="hazard">
                 <img src="./img/lamp-removebg-preview.png" alt="">
             </div>
-            <div class="waste-item disabled" data-type="recycle">
+            <div class="waste-item disabled" data-type="hazard">
                 <img src="./img/headphone-removebg-preview.png" alt="">
             </div>
-            <div class="waste-item disabled" data-type="recycle">
+            <div class="waste-item disabled" data-type="hazard">
                 <img src="./img/mouse-removebg-preview.png" alt="">
             </div>
         </div>
@@ -414,7 +457,6 @@
         </div>
     </div>
 
-    <!-- Add this HTML for the modal right before the closing body tag -->
     <div id="gameEndModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -432,6 +474,12 @@
             </div>
         </div>
     </div>
+
+    <a href="#" class="home-button" onclick="homePage(); return false;">
+        <svg viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </svg>
+    </a>
 
     <script>
         let score = 0;
@@ -666,6 +714,10 @@
                 hideModal();
             }
         });
+
+        function homePage() {
+            document.location.href = './index.html';
+        }
     </script>
 </body>
 
